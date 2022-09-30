@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BykesProject.Models.vwBooking>
+
+@{
+    ViewBag.Title = "Bookings";
+}
+
+<h2>Bookings</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Byke Description</th>
+        <th>Byke Type</th>
+        <th>Client</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <th>@item.BykeDescription</th>
+    <th>@item.BykeType</th>
+    <th>@item.UserName</th>
+    
+</tr>
+}
+
+</table>

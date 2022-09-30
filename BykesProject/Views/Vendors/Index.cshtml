@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BykesProject.Models.Vendor>
+
+@{
+    ViewBag.Title = "Vendors";
+}
+
+<h2>Vendors</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Create Byke", "Create","Bykes", new { id = item.VendorID },new { })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.VendorID }) |
+        @Html.ActionLink("Details", "Details", new { id=item.VendorID }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.VendorID })*@
+        </td>
+    </tr>
+}
+
+</table>

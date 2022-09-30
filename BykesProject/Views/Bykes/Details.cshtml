@@ -1,0 +1,50 @@
+﻿@model BykesProject.Models.Byke
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Byke</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BykeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BykeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BykeType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BykeType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor.VendorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor.VendorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BykeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

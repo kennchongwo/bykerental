@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BykeRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="BykeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Byke">
+    <Key>
+      <PropertyRef Name="BykeId" />
+    </Key>
+    <Property Name="BykeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BykeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VendorID" Type="int" Nullable="false" />
+    <Property Name="BykeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ClientPhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTyppe">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VendorAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="VendorPhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VendorCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BykeRental.dbo.vwBooking' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwBooking">
+    <Key>
+      <PropertyRef Name="BookingID" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="BykeId" />
+      <PropertyRef Name="BykeDescription" />
+      <PropertyRef Name="BykeType" />
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="BookingID" Type="int" Nullable="false" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="BykeId" Type="int" Nullable="false" />
+    <Property Name="BykeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BykeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BykeRental.dbo.vwBykes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwBykes">
+    <Key>
+      <PropertyRef Name="BykeId" />
+      <PropertyRef Name="BykeDescription" />
+      <PropertyRef Name="VendorID" />
+      <PropertyRef Name="BykeType" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="BykeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BykeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VendorID" Type="int" Nullable="false" />
+    <Property Name="BykeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Booking_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Byke">
+    <End Role="Byke" Type="Self.Byke" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Byke">
+        <PropertyRef Name="BykeId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="BykeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Byke_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="Byke" Type="Self.Byke" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorID" />
+      </Principal>
+      <Dependent Role="Byke">
+        <PropertyRef Name="VendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vendor_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BykeRentalModelStoreContainer">
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Byke" EntityType="Self.Byke" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTyppe" EntityType="Self.UserTyppe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vwBooking" EntityType="Self.vwBooking" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwBooking].[BookingID] AS [BookingID], 
+    [vwBooking].[Id] AS [Id], 
+    [vwBooking].[BykeId] AS [BykeId], 
+    [vwBooking].[BykeDescription] AS [BykeDescription], 
+    [vwBooking].[BykeType] AS [BykeType], 
+    [vwBooking].[UserName] AS [UserName]
+    FROM [dbo].[vwBooking] AS [vwBooking]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwBykes" EntityType="Self.vwBykes" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwBykes].[BykeId] AS [BykeId], 
+    [vwBykes].[BykeDescription] AS [BykeDescription], 
+    [vwBykes].[VendorID] AS [VendorID], 
+    [vwBykes].[BykeType] AS [BykeType], 
+    [vwBykes].[Status] AS [Status]
+    FROM [dbo].[vwBykes] AS [vwBykes]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Booking_AspNetUsers" Association="Self.FK_Booking_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Byke" Association="Self.FK_Booking_Byke">
+      <End Role="Byke" EntitySet="Byke" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Byke_Vendor" Association="Self.FK_Byke_Vendor">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="Byke" EntitySet="Byke" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_AspNetUsers" Association="Self.FK_Client_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vendor_AspNetUsers" Association="Self.FK_Vendor_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Vendor" EntitySet="Vendor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

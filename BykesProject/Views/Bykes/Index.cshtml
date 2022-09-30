@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BykesProject.Models.Byke>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bykes</h2>
+
+<div>
+    @if (ViewBag.VendorID == "1") {
+    <div>
+        @Html.ActionLink("Create My Byke", "Create", new { id = ViewBag.VendorID })
+    </div>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BykeDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BykeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor.VendorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BykeDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BykeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor.VendorName)
+        </td>
+        <td>
+            @if (ViewBag.VendorID == "z" && item.Status!="Booked")
+            {
+                @Html.ActionLink("Book Byke", "Book", new { id = item.BykeId })
+            }
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.BykeId }) |
+        @Html.ActionLink("Details", "Details", new { id=item.BykeId }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.BykeId })*@
+        </td>
+    </tr>
+}
+
+</table>

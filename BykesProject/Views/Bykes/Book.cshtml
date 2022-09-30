@@ -1,0 +1,48 @@
+﻿@model BykesProject.Models.Byke
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Book This Byke ?</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Byke</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.BykeId)
+    @Html.HiddenFor(model => model.BykeDescription)
+    @Html.HiddenFor(model => model.BykeType)
+    @Html.HiddenFor(model => model.VendorID)
+    @Html.HiddenFor(model => model.Status)
+
+    <div class="form-group">
+        @Html.DisplayFor(model => model.BykeDescription)
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayFor(model => model.BykeType)
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
