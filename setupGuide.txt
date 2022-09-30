@@ -1,0 +1,24 @@
+Setup Guide
+
+1. I have done the project in Asp.Net (C#) MVC framework 4.7.2 using visual studio 2019 environment
+2. The source code is hosted at Github: https://github.com/kennchongwo/bykerental
+3. Attached also is the deployed version on zip to be hosted directly on IIS server
+4. The connection string (web.config file) to the database has to be edited to reflect the environment that the application is being hosted: File Name: app.publish
+
+	<add name="DefaultConnection" connectionString="Data Source=DESKTOP-35LEL8D;Initial Catalog=BykeRental;Integrated Security=True" providerName="System.Data.SqlClient" />
+    	<add name="BykeRentalEntities" connectionString="metadata=res://*/Models.dbModel.csdl|res://*/Models.dbModel.ssdl|res://*/Models.dbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-35LEL8D;initial catalog=BykeRental;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+
+	Edit the Datasource to the ipAdress of the hosting machine, as well as the authentication settings to MS SQL DB
+5. The application uses MS SQL Database name <BykeRental>, SQL 2014, version 12.0.5000.0. The script of the database is provided in github repo; fileName: ByRentalScript.sql
+
+6. The default admin credentials are:
+	Username: kennchongwo@gmail.com
+	password: Pass123$
+7. Vendor credentials
+	Username: tim@gmail.com
+	password: Pass123$
+8. Client credentials
+	Username: client@yahoo.com
+	password: Pass123$
+
+9. The application requires authentication to proceed to various modules
